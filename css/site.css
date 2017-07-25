@@ -1,0 +1,729 @@
+@charset "UTF-8";
+html,
+body {
+    height: 100%;
+}
+
+
+body > a, template {
+    display: none
+}
+
+/*.m-btn, .m-time {
+    overflow: hidden
+}*/
+
+html body {
+    color: #535353;
+    font-family: "PingFang SC", "Microsoft Yahei", Arial;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+template {
+    z-index: 10
+}
+
+.bg-container {
+    position: fixed;
+    z-index: 11;
+    width: 100%;
+    height: 100%
+}
+
+.bg-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ddd;
+    -webkit-transition: opacity 2.5s;
+    -moz-transition: opacity 2.5s;
+    -o-transition: opacity 2.5s;
+    transition: opacity 2.5s;
+    opacity: 0;
+    z-index: 11
+}
+
+.bg-canvas.active {
+    opacity: 1;
+    z-index: 11
+}
+
+.card-container {
+    margin-top: 95px;
+    width: 314px;
+    height: 544px;
+    position: relative;
+    max-width: 100%
+}
+
+.card-container-title {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    top: -28px;
+    left: 0;
+    margin: 0;
+    z-index: 22;
+    font-weight: 400
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    position: absolute;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 0 18px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: opacity 2.5s;
+    -moz-transition: opacity 2.5s;
+    -o-transition: opacity 2.5s;
+    transition: opacity 2.5s;
+    z-index: 20
+}
+
+.card.active {
+    opacity: 1;
+    z-index: 21
+}
+
+.card-img, .viewpoint-img {
+    width: 100%;
+    margin-bottom: 12px
+}
+
+.content {
+    height: auto;
+    padding-top: 50px
+}
+
+.content .thumb-container img {
+    max-width: 100%;
+    vertical-align: middle;
+    display: block;
+    margin: 0 auto
+}
+
+.card-btn, .content .overview {
+    margin-top: 5px;
+    position: relative
+}
+
+.content .thing-name {
+    font-weight: 700;
+    font-size: 18px;
+    height: 35px;
+    line-height: 35px;
+    color: #444;
+    text-align: left
+}
+
+.content .thumb-container {
+    display: inline-block;
+    width: 93.75%;
+    line-height: 250px;
+    margin-bottom: 11px;
+    overflow: hidden;
+    position: relative
+}
+
+.card-btn {
+    border: 1px solid #f57f00;
+    border-radius: 2px;
+    color: #f57f00;
+    display: block;
+    width: 62px;
+    float: right;
+    height: 23px;
+    line-height: 21px;
+    text-indent: 12px;
+    font-size: 12px
+}
+
+.card-btn-buy, .card-btn-buy:hover {
+    border-color: #D468AE;
+    color: #D468AE;
+    text-decoration: none;
+    font-weight: 400
+}
+
+.card-btn-app, .card-btn-app:hover {
+    border-color: #64a847;
+    color: #64a847;
+    text-decoration: none;
+    font-weight: 400
+}
+
+.content .overview {
+    border-radius: 6px;
+    text-align: justify;
+    color: #444;
+    line-height: 18px
+}
+/*
+.app-logo {
+    width: 100%;
+    height: 279px;
+    padding-top: 12%;
+    margin-bottom: 12px
+}
+
+.app-logo img {
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 40px
+}*/
+
+/*.vp-author {
+    text-align: right;
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    margin-bottom: 0;
+    color: #444;
+    font-size: 12px
+}*/
+
+.mask-title, .mask-vol, .qr-intro, .tag, footer p {
+    text-align: center
+}
+
+.video-container {
+    position: relative;
+    margin-bottom: 0
+}
+
+.card-video {
+    padding: 0
+}
+
+.card-video .content {
+    padding-top: 50px
+}
+
+.video-container img {
+    width: 100%
+}
+
+.video-container .video-play-btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    max-height: 70px;
+    max-width: 70px;
+    margin-top: -35px;
+    margin-left: -35px
+}
+
+.video-container video {
+    width: 1px;
+    display: block;
+    position: absolute;
+    height: 1px;
+    top: 0;
+    left: 0;
+    background: #000;
+    opacity: 0
+}
+
+.card-video .overview, .card-video .thing-name {
+    padding: 0 18px
+}
+
+.mask-img {
+    width: 100%;
+    /*height: 68%;*/
+    display: block;
+    /*margin: 10% auto 20%*/
+    /*margin-left: 50%;*/
+    /*-webkit-transform: translate(-50%, 0);*/
+    /*-moz-transform: translate(-50%, 0);*/
+    /*-ms-transform: translate(-50%, 0);*/
+    /*-o-transform: translate(-50%, 0);*/
+    /*transform: translate(-50%, 0);*/
+}
+
+.mask-title {
+    font-size: 20px
+}
+
+.mask-topic {
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    font-size: 12px;
+    color: #d8d8d8;
+}
+
+.tag {
+    position: absolute;
+    left: 0;
+    top: 14px;
+    color: #fff;
+    width: 60px;
+    height: 22px;
+    line-height: 22px;
+    border-radius: 0 2px 2px 0
+}
+
+.contact a, .intro, footer {
+    position: relative
+}
+
+.tag-thing {
+    background: #D468AE;
+}
+
+.tag-music {
+    background: #ed5d6b
+}
+
+.tag-app {
+    background: #64a847
+}
+
+.tag-word {
+    background: #6f8a95
+}
+
+.tag-video {
+    background: #3DA3DC;
+}
+
+.tag-gif {
+    background: #6A8AA0;
+}
+
+.intro {
+    margin-top: 95px;
+    z-index: 20;
+    margin-left: 50px
+}
+
+.logo {
+    margin-bottom: 36px;
+    width: 120px
+}
+
+.slogan {
+    color: #fff;
+    font-size: 48px;
+    height: 136px;
+    font-weight: lighter;
+    margin-bottom: 67px;
+    display: block
+}
+
+.qr-intro, footer, footer p {
+    font-size: 12px
+}
+
+.qr-code {
+    width: 160px;
+    height: 160px;
+    padding: 4px;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10px
+}
+
+.qr-code img {
+    width: 100%;
+}
+
+.qr-intro {
+    color: #fff;
+    line-height: 35px;
+    width: 160px
+}
+
+footer {
+    z-index: 22
+}
+
+footer p {
+    line-height: 32px;
+    color: rgba(255, 255, 255, .7)
+}
+
+.contact a {
+    white-space: nowrap;
+    vertical-align: middle;
+    margin-left: 12px;
+    overflow: visible;
+    text-indent: 999px;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-image: url(http://cq-image.oss-cn-qingdao.aliyuncs.com/home/img/contact-icons.png);
+    margin-top: -4px
+}
+
+.contact a img {
+    position: absolute;
+    z-index: 24;
+    bottom: 44px;
+    left: -64px;
+    width: 150px;
+    display: none
+}
+
+.contact a:hover img {
+    display: block
+}
+
+.contact a:first-child {
+    margin-left: 24px
+}
+
+.contact-wechat {
+    background-position: 0 0
+}
+
+.contact-qq {
+    background-position: -32px 0
+}
+
+.contact-wb {
+    background-position: -64px 0
+}
+
+.roll-point {
+    overflow: hidden;
+    width: 68px;
+    margin: 0 auto 0 -34px;
+    position: absolute;
+    z-index: 21;
+    bottom: -28px;
+    left: 50%
+}
+
+.roll-point span {
+    box-sizing: content-box;
+    display: block;
+    float: left;
+    width: 5px;
+    height: 5px;
+    margin: 0 5px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background: 0 0;
+    cursor: pointer
+}
+
+.roll-point span.active {
+    background: #fff
+}
+
+.block-title {
+    position: relative;
+    z-index: 25;
+    overflow: hidden;
+    padding: 13px 0 5px;
+    margin: 0 10px 14px;
+    opacity: 1;
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none
+}
+
+.block-title .logo-slogan {
+    height: 54px;
+    color: #fff;
+    float: left;
+    text-align: left;
+    margin-left: 10px;
+    margin-bottom: 0
+}
+
+.cq-modal-dismiss, .cq-modal-down, .cq-modal-slogan {
+    text-align: center
+}
+
+.block-title .logo-slogan h4 {
+    padding-top: 4px;
+    font-size: 16px;
+    line-height: 25px
+}
+
+.block-title .logo-slogan * {
+    color: #fff;
+    margin: 0
+}
+
+.block-title .logo-slogan p {
+    font-size: 12px
+}
+
+.cq-logo {
+    float: left;
+    height: 48px;
+    width: 48px
+}
+
+.download-btn {
+    display: block;
+    float: right;
+    width: 90px;
+    height: 30px;
+    margin-top: 10px
+}
+
+.download-btn img {
+    width: 100%
+}
+
+.contact {
+    text-indent: 120px
+}
+
+.cq-modal-mask {
+    position: fixed;
+    z-index: 29;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .4)
+}
+
+.cq-modal {
+    overflow: hidden;
+    position: absolute;
+    z-index: 30;
+    width: 200px;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: -100px;
+    margin-left: -100px
+}
+
+.cq-modal-logo {
+    width: 80px;
+    display: block;
+    margin: 0 auto 16px
+}
+
+.cq-modal-dismiss {
+    position: absolute;
+    color: #767676;
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+.cq-modal-dismiss:active, .cq-modal-dismiss:focus, .cq-modal-dismiss:hover, .cq-modal-down:active, .cq-modal-down:focus, .cq-modal-down:hover {
+    text-decoration: none
+}
+
+.cq-modal-down:active, .cq-modal-down:focus, .cq-modal-down:hover {
+    color: #fff
+}
+
+.cq-modal-down {
+    display: block;
+    background: #FC4C45;
+    color: #fff;
+    width: 135px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 8px;
+    margin: 0 auto
+}
+
+.cq-modal-qr {
+    display: block;
+    width: 80%;
+    margin: 0 auto 12px
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .bg-canvas {
+        min-height: 100%;
+        min-width: 100%;
+        width: 100%
+    }
+
+    .card-container {
+        margin: 20px auto 48px;
+        height: 515px
+    }
+
+    .intro {
+        margin-left: 0;
+        text-align: center;
+        margin-bottom: 10%
+    }
+
+    .slogan {
+        font-size: 42px;
+        display: block
+    }
+
+    .download-container, .qr-code {
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .tag {
+        line-height: 24px;
+    }
+}
+
+@media screen and (max-width: 321px) {
+    .card-container {
+        height: 490px
+    }
+    .tag {
+        line-height: 22px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1600px) {
+    .bg-canvas {
+        width: 100%
+    }
+
+    .card-container {
+        margin-left: 35%;
+        margin-bottom: 20%
+    }
+
+    .intro {
+        margin-left: 10%
+    }
+}
+
+@media screen and (min-width: 1601px) {
+    .bg-canvas {
+        width: 100%
+    }
+
+    .card-container {
+        margin-left: 32%;
+        margin-bottom: 37%;
+        margin-top: 30%
+    }
+
+    .intro {
+        margin-left: 10%;
+        margin-top: 30.5%
+    }
+}
+
+
+#beian {
+    color: rgba(255, 255, 255, .7);
+}
+
+.date-container {
+    position: absolute;
+    top: 36%;
+    color: #fff;
+    padding-left: 15px;
+}
+
+.date-date {
+    font-size: 48px;
+}
+
+.date-info {
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.mask-vol {
+    padding: 0 15px;
+    text-align: left;
+    padding-top: 20px;
+}
+
+.gif-container {
+    width: 100%;
+    height: 100%;
+    max-width: 278px;
+    max-height: 278px;
+    display: block;
+    text-align: center;
+    margin-bottom: 32px;
+    overflow: hidden;
+    position: relative;
+}
+
+.gif-container span {
+    display: table-cell;
+    vertical-align: middle;
+    max-width: 278px;
+    max-height: 278px;
+    width: 100%;
+    height: 100%;
+}
+
+.gif-img {
+    width: auto;
+    display: block;
+    margin-bottom: 0;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    margin-left: 50%;
+    margin-top: 50%;
+    /*transform: translate(50%, 50%); */
+}
+
+.pc-down-button {
+    margin-left: 24px;padding-top: 24px;
+}
+
+.pc-down-button button{
+    display: block;
+    width: 120px;
+    height: 45px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.pc-down-button button:hover {
+    background: #fff;
+    color: #666;
+}
+
+.pc-down-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.pc-down-button a:hover {
+    background: #fff;
+    color: #666;
+}

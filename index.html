@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="renderer" content="webkit">
+
+
+  <title>一日猫</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/site.css" rel="stylesheet">
+</head>
+
+<body id="main">
+  <div class="bg-container" style="top:0;left:0">
+    <template v-for="item in carddata.cards">
+      <img :src="item.image_url + '@90Q_50-50bl_-100b'" v-else class="bg-canvas" :class="$index == activeIndex ? 'active' : ''"
+        alt="背景">
+    </template>
+    <!--bg-container template end-->
+  </div>
+  <div class="container">
+    <div class="row">
+      <!--左边今日精选-->
+      <div class="col-md-6 col-xs-12">
+        <div class="card-container">
+          <h2 class="card-container-title hidden-xs">今日精选</h2>
+          <div @mouseover="clearChange" @mouseout="changeCard">
+            <card v-bind:carddata="carddata" v-bind:activeindex="activeIndex"></card>
+          </div>
+          <div class="roll-point" v-if="carddata.cards.length > 1">
+            <span v-for="item in carddata.cards" :class="$index == activeIndex ? 'active' : ''" @click="modifyCard($index)"></span>
+          </div>
+        </div>
+        <div class="block-title visible-xs-block" id="block-title">
+          <img class="cq-logo" src="http://file.yirimao.com/yirimaoIcon.png@90Q.png" alt="">
+          <div class="logo-slogan">
+            <h4>一日猫</h4>
+            <p>有猫 就有一万种美好</p>
+          </div>
+
+          <a class="download-btn" href="http://yirimao.com/site/download" id="downladCQ">
+            <img src="http://file.yirimao.com/zhenzaizhelii.png@90Q.png" alt="">
+          </a>
+        </div>
+      </div>
+
+      <!--右边上方图标文字-->
+      <div class="col-md-6 hidden-xs">
+        <div class="intro">
+          <img class="logo" src="http://file.yirimao.com/yirimaoIcon.png@90Q.png" alt="logo图">
+          <p class="slogan">有猫 就有一万种美好</p>
+          <!--右边下方二维码信息-->
+          <div class="download-container">
+            <div style="float: left">
+              <div class="qr-code">
+                <img src="http://file.yirimao.com/1476969936.png@90Q" alt="二维码">
+              </div>
+              <p class="qr-intro">扫码下载App 开始萌逼生活！</p>
+            </div>
+            <div style="float: left" class="pc-down-button">
+              <button><a href="https://itunes.apple.com/us/app/yi-ri-mao-yi-ge-mao-mi-wen/id1089866101?l=zh&ls=1&mt=8">iOS</a></button>
+              <button><a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.threeWater.yirimao">Android</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--版权信息-->
+    <footer class="row hidden-xs">
+      <div class="text-center">
+        <p align="center">©南京水合网络科技有限公司 2015 All Rights Reserved <a id="beian" target="_blank" href="http://www.miibeian.gov.cn">苏ICP备13035173号-1</a></p>
+      </div>
+    </footer>
+  </div>
+  <!--cardTpl-->
+  <template id="cardTpl">
+    <template v-for="(index, item) in carddata.cards">
+      <calendar-card v-if="item.category.id == 1" :carddata="item" :index="index" :active="activeindex"></calendar-card>
+      <video-card v-if="item.category.id == 2" :cardData="item" :index="index" :active="activeindex"></video-card>
+      <commodity-card v-if="item.category.id == 3" :carddata="item" :index="index" :active="activeindex"></commodity-card>
+      <gif-card v-if="item.category.id == 4" :carddata="item" :index="index" :active="activeindex"></gif-card>
+    </template>
+  </template>
+  <!--cardTpl end-->
+
+  <!--calendarCard-->
+  <template id="calendarCard">
+    <!--封面-->
+    <div class="card " :class="index == active ? 'active' : ''" style="padding: 0">
+      <div class="content" style="padding: 0;height: 100%;">
+        <img class="card-img mask-img" :src="carddata.image_url" alt="">
+        <div class="date-container">
+          <div class="date-date">{{cardDate.date}}</div>
+          <p class="date-info">{{cardDate.day}}.{{cardDate.month}}</p>
+        </div>
+        <!--<h1 class="mask-title">{{carddata.title}}</h1>-->
+        <p class="mask-vol">{{carddata.overview}}</p>
+      </div>
+      <div class="mask-topic">- {{carddata.author}}</div>
+    </div>
+  </template>
+  <!--calendarCard end-->
+
+  <!--videoCard-->
+  <template id="videoCard">
+    <div class="card card-video" :class="index == active ? 'active' : ''">
+      <div class="content">
+        <div class="video-container">
+          <img class="card-img" id="videoImg" :src="carddata.image_url">
+          <img class="video-play-btn" v-show="maskShow" @click="playVideo" id="videoPlayBtn" src="http://img.3water3.com/home/img/playBtn.png@90Q.png"
+            alt="猫片">
+          <video class="video" :style="maskShow ? '' : videoStyle" controls id="video" v-el:video :src="carddata.video_url"></video>
+        </div>
+        <div class="thing-name video-name">
+          <div class="video-name" id="video-name">
+            {{carddata.title}}
+          </div>
+        </div>
+        <div class="overview">
+          {{carddata.overview}}
+        </div>
+      </div>
+      <div class="tag tag-video">{{carddata.category.title}}</div>
+    </div>
+  </template>
+  <!--videoCard-->
+
+  <!--commodityCard-->
+  <template id="commodityCard">
+    <div class="card" :class="index == active ? 'active' : ''">
+      <div class="content">
+        <img class="card-img" :src="carddata.image_url" alt="">
+        <div class="thing-name">
+          {{carddata.title}}
+          <a :href="carddata.product-url" class="card-btn card-btn-buy" id="thing-buy-btn">买买买</a>
+        </div>
+        <div class="overview">
+          {{carddata.overview}}
+        </div>
+      </div>
+      <div class="tag tag-thing">{{carddata.category.title}}</div>
+    </div>
+  </template>
+  <!--commodityCard end-->
+
+  <!--gifCard-->
+  <template id="gifCard">
+    <div class="card" :class="index == active ? 'active' : ''">
+      <div class="content">
+        <div class="gif-container" v-el:container :style="{height: containerHeight + 'px'}">
+          <img class="card-img gif-img" v-el:gif :src="carddata.image_url" alt="">
+        </div>
+        <div class="overview">
+          {{carddata.overview}}
+        </div>
+      </div>
+      <div class="tag tag-gif">{{carddata.category.title}}</div>
+    </div>
+  </template>
+  <!--gifCard end-->
+
+  <script src="https://cdn.bootcss.com/vue/1.0.24/vue.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue-resource/0.8.0/vue-resource.min.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/card.js"></script>
+</body>
+
+
+
+</html>
